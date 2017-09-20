@@ -3,6 +3,7 @@
 <head>
 	<title>CSS HTML Forms Lab</title>
 	<link rel="stylesheet" href="style.css">
+	<link href="https://fonts.googleapis.com/css?family=Proza+Libre" rel="stylesheet">
 </head>
 <body>
 	<section id="main">
@@ -11,7 +12,7 @@
 					<h1>My Dev Story</h1>
 					<div class="row formGroup">
 					    <label for="name">Name:</label>
-					    <input id="name" name="name" >
+					    <input id="name" name="name" value="">
 				    </div>
 					<div class="row formGroup">
 				    	<label for="verb-1">Verb:</label>
@@ -58,7 +59,7 @@
 					
 					<div class="row formGroup">
 				    	<label for="noun-1">Noun:</label>
-				    	<input id="noun-1" name="noun-1">
+				    	<input id="noun-1" name="noun-1" value="">
 					</div>
 					<div class="row formGroup">
 	
@@ -81,10 +82,10 @@
 					</div>
 					<div class="row formGroup">
 				    	<label for="noun-2">Noun:</label>
-				    	<input id="noun-2" name="noun-2">
+				    	<input id="noun-2" name="noun-2" value="">
 					</div>
 					<div class="row formGroup">
-				    	<input type="submit">
+				    	<input class="submit" type="submit">
 				    </div>
 				    
 			    </div>
@@ -111,24 +112,35 @@
 		$("form").on("submit", function(event){
 
 		    // Stop the form from submitting
+		    event.preventDefault();
 
 	    	// Run the 'makeResults' function seen above
-
-	    	/*
+	    	makeResults();
+	    	
 			
-				For each value entered into a form input, add the input to the corresponding sentence, then append the text into the results section:
+				// For each value entered into a form input, add the input to the corresponding sentence, then append the text into the results section:
+				let list = [];
+				$(".check input").each(function(index, el) {
+					if(el.checked) {
+						list.push(" " + el.value);
+					}
+				});	
 
-				"Once upon a time there was a Developer named NAME."
+				var sentiment = "";
+				$('.radio input').each(function(index, el) {
+					if(el.checked) {
+						sentiment = el.value
+					}
+				});
 
-				"NAME came to General Asssembly to VERB1 the great mountain of programming knowledge."
+				// "Once upon a time there was a Developer named $('#name').val()." 
+				$('<p>').text("Once upon a time there was a Developer named " + $('#name').val() + ". " + $('#name').val() + " came to General Asssembly to " + $('#verb-1').val() + " the great mountain of programming knowledge. \"" + $('#mission').val() + "\", " + $('#name').val() + " shouted. Though " + sentiment + ", " +$('#name').val()+ " was able to overcome all obstacles with the power of their " + $('#noun-1').val()+ ". In the end, their success can be contributed entirely to their" + list +" "+ $('#noun-2').val() +"."
 
-				""MISSION", NAME shouted."
-	
-				"Though SENTIMENT, NAME was able to overcome all obstacles with the power of their NOUN."
+					).appendTo('.results');
 
-				"In the end, their success can be contributed entirely to their " + ADJECTIVE2[list each one checked, comma-separated] + NOUN2."
-
-	    	*/ 
+				
+				
+	   //  	*/ 
 		});
 	</script>
 
